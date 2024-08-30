@@ -1,0 +1,145 @@
+<div
+  class="fixed z-50 right-0 top-0 w-fit p-4 max-sm:p-0 flex max-sm:flex-col-reverse space-x-3 items-end"
+>
+  <!--
+  <div class="relative inline-block text-left dropdown max-sm:pt-3">
+    <div>
+      <button
+        (click)="toggleDropdown()"
+        type="button"
+        class="inline-flex justify-center gap-x-1.5 rounded-md bg-gray-300 dark:bg-gray-800 px-2 py-1 pt-1 text-sm font-semibold text-gray-800 shadow-sm ring-1 ring-inset ring-gray-400 hover:bg-gray-10"
+        id="menu-button"
+        aria-expanded="true"
+        aria-haspopup="true"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+          class="size-5 text-gray-500"
+          fill="currentColor"
+        >
+          <path fill="none" d="M0 0h48v48H0z" />
+          <path
+            d="M23.99 4C12.94 4 4 12.95 4 24s8.94 20 19.99 20C35.04 44 44 35.05 44 24S35.04 4 23.99 4zm13.85 12h-5.9c-.65-2.5-1.56-4.9-2.76-7.12 3.68 1.26 6.74 3.81 8.66 7.12zM24 8.07c1.67 2.4 2.97 5.07 3.82 7.93h-7.64c.85-2.86 2.15-5.53 3.82-7.93zM8.52 28C8.19 26.72 8 25.38 8 24s.19-2.72.52-4h6.75c-.16 1.31-.27 2.64-.27 4 0 1.36.11 2.69.28 4H8.52zm1.63 4h5.9c.65 2.5 1.56 4.9 2.76 7.13A16.034 16.034 0 0 1 10.15 32zm5.9-16h-5.9c1.92-3.31 4.98-5.87 8.66-7.13-1.2 2.23-2.11 4.63-2.76 7.13zM24 39.93c-1.66-2.4-2.96-5.07-3.82-7.93h7.64c-.86 2.86-2.16 5.53-3.82 7.93zM28.68 28h-9.36c-.19-1.31-.32-2.64-.32-4 0-1.36.13-2.69.32-4h9.36c.19 1.31.32 2.64.32 4 0 1.36-.13 2.69-.32 4zm.51 11.12c1.2-2.23 2.11-4.62 2.76-7.12h5.9a16.087 16.087 0 0 1-8.66 7.12zM32.72 28c.16-1.31.28-2.64.28-4 0-1.36-.11-2.69-.28-4h6.75c.33 1.28.53 2.62.53 4s-.19 2.72-.53 4h-6.75z"
+          />
+        </svg>
+        <svg
+          class="-mr-1 h-5 w-5 text-gray-400"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+    </div>
+
+  
+    <div
+      *ngIf="this.isDropdownOpen"
+      class="absolute right-0 mt-1 w-16 origin-top-right rounded-md bg-gray-100 dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+      role="menu"
+      aria-orientation="vertical"
+      aria-labelledby="menu-button"
+      tabindex="-1"
+    >
+      <div class="py-1" role="none">
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200"
+          role="menuitem"
+          tabindex="-1"
+          id="menu-item-0"
+          (click)="switchLanguage('fr')"
+          >FR</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200"
+          role="menuitem"
+          tabindex="-1"
+          id="menu-item-1"
+          (click)="switchLanguage('en')"
+          >EN</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200"
+          role="menuitem"
+          tabindex="-1"
+          id="menu-item-1"
+          (click)="switchLanguage('de')"
+          >DE</a
+        >
+        <a
+          href="#"
+          class="block px-4 py-2 text-sm text-gray-800 dark:text-gray-200"
+          role="menuitem"
+          tabindex="-1"
+          id="menu-item-1"
+          (click)="switchLanguage('it')"
+          >IT</a
+        >
+      </div>
+    </div>
+  </div>-->
+
+  <div class="flex flex-col">
+    <div class="flex items-center max-sm:space-x-1">
+      <span>
+        <svg
+          class="h-6 w-6 max-sm:h-4 max-sm:w-4"
+          [ngClass]="toggleActive ? 'text-gray-400' : 'text-gray-500'"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+          />
+        </svg>
+      </span>
+
+      <!-- Switch Container -->
+      <a (click)="handleToggleActive()"
+        ><div
+          [ngClass]="
+            toggleActive
+              ? 'bg-gray-300 dark:bg-gray-700'
+              : 'bg-gray-300 dark:bg-gray-700'
+          "
+          class="w-14 h-7 max-sm:w-7 max-sm:h-5 flex items-center rounded-full mx-1 px-1 max-sm:px-0 max-sm:mx-0"
+        >
+          <!-- Switch -->
+          <div
+            class="bg-white dark:bg-black w-5 h-5 rounded-full shadow-md transform transition-colors duration-200"
+            [ngClass]="toggleActive ? 'translate-x-7 max-sm:translate-x-3' : ''"
+          ></div>
+        </div>
+      </a>
+      <span>
+        <svg
+          class="h-6 w-6 max-sm:h-4 max-sm:w-4"
+          [ngClass]="toggleActive ? 'text-gray-500' : 'text-gray-400'"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+          />
+        </svg>
+      </span>
+    </div>
+  </div>
+</div>

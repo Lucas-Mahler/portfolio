@@ -1,0 +1,770 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- invite-de-commandes.component.html -->
+<div
+  class="mt-8 z-10 max-sm:mt-0 max-sm:w-screen relative h-fit text-black dark:text-white w-full rounded-lg shadow-lg dark:shadow-gray-800 scale-0 transform-gpu transition-all duration-500"
+  [ngClass]="{ 'scale-100': isInviteVisible, 'scale-0': !isInviteVisible }"
+>
+  <!-- Invite de commandes Header -->
+  <div
+    class="bg-gray-300 dark:bg-gray-800 dark:text-gray-300 text-gray-800 p-2 flex items-center justify-between rounded-t-lg relative"
+  >
+    <div class="flex items-center space-x-2">
+      <span class="bg-red-500 w-3 h-3 rounded-full"></span>
+      <span class="bg-yellow-500 w-3 h-3 rounded-full"></span>
+      <span class="bg-green-500 w-3 h-3 rounded-full"></span>
+    </div>
+    <!-- Texte centré -->
+    <span class="text-xs absolute left-1/2 transform -translate-x-1/2">
+      {{ "cmd" | transloco }}
+    </span>
+  </div>
+
+  <!-- Invite de commandes Content -->
+  <div class="p-4 text-sm backdrop-blur-md rounded-b-lg">
+    <div class="w-fit p-5 whitespace-pre-wrap overflow-hidden">
+      <p [ngClass]="{ typing: isInviteVisible, 'opacity-0': !isInviteVisible }">
+        ~\brain\stack&gt; ls
+      </p>
+    </div>
+    <div
+      [ngClass]="{ 'reveal-in': isDivVisible, hidden: !isDivVisible }"
+      class="flex max-sm:flex-col"
+    >
+      <div class="w-1/4 max-sm:w-full max-sm:pt-10">
+        <div
+          class="hs-accordion-treeview-root"
+          role="tree"
+          aria-orientation="vertical"
+        >
+          <div class="hs-accordion-group" role="group">
+            <!-- Parent Accordion -->
+            <div
+              class="hs-accordion"
+              [attr.aria-expanded]="isActive(1)"
+              id="hs-basic-tree-heading-one"
+            >
+              <div
+                class="hs-accordion-heading py-0.5 flex items-center gap-x-0.5 w-full"
+              >
+                <div
+                  class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md cursor-pointer pl-8 pb-1"
+                >
+                  <div
+                    class="flex items-center gap-x-3"
+                    (click)="toggleAccordion(1)"
+                    (keyup.enter)="toggleAccordion(1)"
+                  >
+                    <svg
+                      class="size-10 text-current"
+                      xmlns="http://www.w3.org/2000/svg"
+                      data-name="Backend Development"
+                      viewBox="0 0 64 64"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M46 56c-.55 0-1 .45-1 1 0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V14h41v19c0 .55.45 1 1 1s1-.45 1-1V7c0-2.76-2.24-5-5-5H7c-2.76 0-5 2.24-5 5v50c0 2.76 2.24 5 5 5h35c2.76 0 5-2.24 5-5 0-.55-.45-1-1-1zM4 7c0-1.65 1.35-3 3-3h35c1.65 0 3 1.35 3 3v5H4v-5zM54.71 41.29c-.39-.39-1.02-.39-1.41 0s-.39 1.02 0 1.41l2.29 2.29-2.29 2.29c-.39.39-.39 1.02 0 1.41.2.2.45.29.71.29s.51-.1.71-.29l3-3c.39-.39.39-1.02 0-1.41l-3-3z"
+                      />
+                      <path
+                        d="M44.71 41.29c-.39-.39-1.02-.39-1.41 0l-3 3c-.39.39-.39 1.02 0 1.41l3 3c.2.2.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.02 0-1.41l-2.29-2.29 2.29-2.29c.39-.39.39-1.02 0-1.41zM51.45 40.11c-.49-.25-1.09-.05-1.34.45l-4 8c-.25.49-.05 1.09.45 1.34.14.07.3.11.45.11.37 0 .72-.2.9-.55l4-8c.25-.49.05-1.09-.45-1.34z"
+                      />
+                      <path
+                        d="m59,36h-20c-1.65,0-3,1.35-3,3v12c0,1.65,1.35,3,3,3h20c1.65,0,3-1.35,3-3v-12c0-1.65-1.35-3-3-3Zm1,15c0,.55-.45,1-1,1h-20c-.55,0-1-.45-1-1v-12c0-.55.45-1,1-1h20c.55,0,1,.45,1,1v12Z"
+                      />
+                      <circle cx="8.5" cy="8" r="1.5" />
+                      <circle cx="13.5" cy="8" r="1.5" />
+                      <circle cx="18.5" cy="8" r="1.5" />
+                      <circle cx="9.5" cy="21" r="1.5" />
+                      <path
+                        d="m14,22h10c.55,0,1-.45,1-1s-.45-1-1-1h-10c-.55,0-1,.45-1,1s.45,1,1,1Z"
+                      />
+                      <circle cx="9.5" cy="26" r="1.5" />
+                      <path
+                        d="M14 27h14c.55 0 1-.45 1-1s-.45-1-1-1h-14c-.55 0-1 .45-1 1s.45 1 1 1zM37 26c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1s.45 1 1 1h4c.55 0 1-.45 1-1z"
+                      />
+                      <circle cx="9.5" cy="41" r="1.5" />
+                      <path
+                        d="M14 42h9c.55 0 1-.45 1-1s-.45-1-1-1h-9c-.55 0-1 .45-1 1s.45 1 1 1zM32 41c0-.55-.45-1-1-1h-4c-.55 0-1 .45-1 1s.45 1 1 1h4c.55 0 1-.45 1-1z"
+                      />
+                      <circle cx="9.5" cy="46" r="1.5" />
+                      <path
+                        d="m29,46c0-.55-.45-1-1-1h-14c-.55,0-1,.45-1,1s.45,1,1,1h14c.55,0,1-.45,1-1Z"
+                      />
+                      <circle cx="9.5" cy="51" r="1.5" />
+                      <path
+                        d="m14,50c-.55,0-1,.45-1,1s.45,1,1,1h8c.55,0,1-.45,1-1s-.45-1-1-1h-8Z"
+                      />
+                      <circle cx="14.5" cy="31" r="1.5" />
+                      <path
+                        d="m33,31c0-.55-.45-1-1-1h-13c-.55,0-1,.45-1,1s.45,1,1,1h13c.55,0,1-.45,1-1Z"
+                      />
+                      <circle cx="14.5" cy="36" r="1.5" />
+                      <path
+                        d="m28,37c.55,0,1-.45,1-1s-.45-1-1-1h-9c-.55,0-1,.45-1,1s.45,1,1,1h9Z"
+                      />
+                    </svg>
+
+                    <span class="text-xl">Frontend</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="hs-accordion-content w-full overflow-hidden transition-all duration-200"
+                role="group"
+                aria-labelledby="hs-basic-tree-heading-one"
+                [ngClass]="{
+                  'max-h-0': isActive(1),
+                  'max-h-screen': !isActive(1),
+                }"
+              >
+                <!-- Child Accordion 1 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-one"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_angular.png"
+                          alt="logo angular"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full max-sm:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Angular
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Child Accordion 2 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-two"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3 relative">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_vuejs.webp"
+                          alt="logo vuejs"
+                        />
+
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Vue.js
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Child Accordion 3 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-two"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_react.webp"
+                          alt="logo react"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          React
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Child Accordion 4 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-three"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_jquery.webp"
+                          alt="logo jquery"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          JQuery
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Parent Accordion -->
+          </div>
+        </div>
+      </div>
+      <div class="w-1/4 max-sm:w-full max-sm:pt-10">
+        <div
+          class="hs-accordion-treeview-root"
+          role="tree"
+          aria-orientation="vertical"
+        >
+          <div class="hs-accordion-group" role="group">
+            <!-- Parent Accordion -->
+            <div
+              class="hs-accordion"
+              [attr.aria-expanded]="isActive(2)"
+              id="hs-basic-tree-heading-one"
+            >
+              <div
+                class="hs-accordion-heading py-0.5 flex items-center gap-x-0.5 w-full"
+              >
+                <div
+                  class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md cursor-pointer pl-8 pb-1"
+                >
+                  <div
+                    class="group flex items-center gap-x-3"
+                    (click)="toggleAccordion(2)"
+                    (keyup.enter)="toggleAccordion(2)"
+                  >
+                    <svg
+                      class="size-10 text-current"
+                      xmlns="http://www.w3.org/2000/svg"
+                      data-name="Backend Development"
+                      viewBox="0 0 64 64"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M56,31H53V16a1,1,0,0,0-.293-.707l-12-12A1,1,0,0,0,40,3H12a1,1,0,0,0-1,1V31H8a1,1,0,0,0-1,1V52a1,1,0,0,0,1,1h3v7a1,1,0,0,0,1,1H52a1,1,0,0,0,1-1V53h3a1,1,0,0,0,1-1V32A1,1,0,0,0,56,31ZM13,5H39.586L51,16.414V31H13ZM51,59H13V53H51Zm4-8H9V33H55Z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M44 15H20a1 1 0 0 0 0 2H44a1 1 0 0 0 0-2zM44 19H20a1 1 0 0 0 0 2H44a1 1 0 0 0 0-2zM44 23H20a1 1 0 0 0 0 2H44a1 1 0 0 0 0-2zM44 27H20a1 1 0 0 0 0 2H44a1 1 0 0 0 0-2zM22 49h3a1 1 0 0 0 0-2H22a2 2 0 0 1-2-2V39a2 2 0 0 1 2-2h3a1 1 0 0 0 0-2H22a4 4 0 0 0-4 4v6A4 4 0 0 0 22 49zM33.5 47h-3a.5.5 0 0 1-.5-.5 1 1 0 0 0-2 0A2.5 2.5 0 0 0 30.5 49h3A2.5 2.5 0 0 0 36 46.5v-3A2.5 2.5 0 0 0 33.5 41h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5 1 1 0 0 0 2 0A2.5 2.5 0 0 0 33.5 35h-3A2.5 2.5 0 0 0 28 37.5v3A2.5 2.5 0 0 0 30.5 43h3a.5.5 0 0 1 .5.5v3A.5.5 0 0 1 33.5 47zM43.5 47h-3a.5.5 0 0 1-.5-.5 1 1 0 0 0-2 0A2.5 2.5 0 0 0 40.5 49h3A2.5 2.5 0 0 0 46 46.5v-3A2.5 2.5 0 0 0 43.5 41h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5 1 1 0 0 0 2 0A2.5 2.5 0 0 0 43.5 35h-3A2.5 2.5 0 0 0 38 37.5v3A2.5 2.5 0 0 0 40.5 43h3a.5.5 0 0 1 .5.5v3A.5.5 0 0 1 43.5 47z"
+                      />
+                    </svg>
+                    <span class="text-xl">CSS</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="hs-accordion-content w-full overflow-hidden transition-all duration-200"
+                role="group"
+                aria-labelledby="hs-basic-tree-heading-one"
+                [ngClass]="{
+                  'max-h-0': isActive(2),
+                  'max-h-screen': !isActive(2),
+                }"
+              >
+                <!-- Child Accordion 1 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-one"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_tailwind.svg"
+                          alt="logo tailwind"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Tailwind
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Child Accordion 2 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-two"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_ionic.svg"
+                          alt="logo ionic"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Ionic
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Child Accordion 2 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-two"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_bootstrap.svg"
+                          alt="logo Bootstrap"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Bootstrap
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Parent Accordion -->
+          </div>
+        </div>
+      </div>
+      <div class="w-1/4 max-sm:w-full max-sm:pt-10">
+        <div
+          class="hs-accordion-treeview-root"
+          role="tree"
+          aria-orientation="vertical"
+        >
+          <div class="hs-accordion-group" role="group">
+            <!-- Parent Accordion -->
+            <div
+              class="hs-accordion"
+              [attr.aria-expanded]="isActive(3)"
+              id="hs-basic-tree-heading-one"
+            >
+              <div
+                class="hs-accordion-heading py-0.5 flex items-center gap-x-0.5 w-full"
+              >
+                <div
+                  class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md cursor-pointer pl-8 pb-1"
+                >
+                  <div
+                    class="flex items-center gap-x-3"
+                    (click)="toggleAccordion(3)"
+                    (keyup.enter)="toggleAccordion(3)"
+                  >
+                    <svg
+                      class="size-10"
+                      xmlns="http://www.w3.org/2000/svg"
+                      data-name="Layer 1"
+                      viewBox="0 0 1000 1000"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M900,866.76H100a16,16,0,0,1-16-16V149.24a16,16,0,0,1,16-16H900a16,16,0,0,1,16,16V850.76A16,16,0,0,1,900,866.76Zm-784-32H884V165.24H116Z"
+                      />
+                      <path
+                        d="M900 267.33H100a16 16 0 010-32H900a16 16 0 110 32zM696.47 216.28h-7.41a16 16 0 010-32h7.41a16 16 0 010 32zM759.41 216.28H752a16 16 0 010-32h7.41a16 16 0 010 32zM822.35 216.28h-7.41a16 16 0 010-32h7.41a16 16 0 010 32zM358.09 740.64H298.85a16 16 0 01-15.88-18l2.62-21a154.25 154.25 0 01-33.27-13.8l-13 16.74a16 16 0 01-23.94 1.49l-41.89-41.9A16 16 0 01175 640.22l16.73-13a154.12 154.12 0 01-13.8-33.28l-21 2.62a16 16 0 01-18-15.87V521.42a16 16 0 0118-15.87l21 2.62a154.12 154.12 0 0113.8-33.28l-16.73-13a16 16 0 01-1.49-23.94L215.35 396a16 16 0 0123.94 1.49l13 16.74a154.25 154.25 0 0133.27-13.8l-2.62-21a16 16 0 0115.88-18h59.24a16 16 0 0115.88 18l-2.62 21a154 154 0 0133.27 13.8l13-16.74A16 16 0 01441.59 396l41.89 41.9A16 16 0 01482 461.87l-16.74 13a154.12 154.12 0 0113.8 33.28l21-2.62a16 16 0 0118 15.87v59.25a16 16 0 01-18 15.87l-21-2.62a154.12 154.12 0 01-13.8 33.28l16.74 13a16 16 0 011.48 23.94l-41.89 41.9a16 16 0 01-23.94-1.49l-13-16.74a154 154 0 01-33.27 13.8l2.62 21a16 16 0 01-15.88 18zm-41.12-32h23l-2.16-17.34a16 16 0 0113-17.73 123 123 0 0048.45-20.09A16 16 0 01421 656.81l10.74 13.81L448 654.35 434.23 643.6a16 16 0 01-3.32-21.74A123.14 123.14 0 00451 573.41a16 16 0 0117.72-13l17.35 2.16v-23l-17.35 2.16a16 16 0 01-17.72-13 123.14 123.14 0 00-20.09-48.45 16 16 0 013.32-21.74L448 447.74l-16.27-16.27L421 445.28a16 16 0 01-21.74 3.33 123 123 0 00-48.45-20.09 16 16 0 01-13-17.73L340 393.45H317l2.16 17.34a16 16 0 01-13 17.73 123 123 0 00-48.46 20.09 16 16 0 01-21.74-3.33l-10.74-13.81L208.9 447.74l13.81 10.75A16 16 0 01226 480.23a123.14 123.14 0 00-20.09 48.45 16 16 0 01-17.72 13l-17.35-2.16v23l17.35-2.16a16 16 0 0117.72 13A123.14 123.14 0 00226 621.86a16 16 0 01-3.32 21.74L208.9 654.35l16.27 16.27 10.74-13.81a16 16 0 0121.74-3.33 123 123 0 0048.46 20.09 16 16 0 0113 17.73z"
+                      />
+                      <path
+                        d="M328.47 652.23A101.19 101.19 0 11429.66 551 101.31 101.31 0 01328.47 652.23zm0-170.37A69.19 69.19 0 10397.66 551 69.26 69.26 0 00328.47 481.86zM698.8 567c-42 0-81.81-10.4-112-29.29-32.48-20.34-50.36-48.18-50.36-78.38s17.88-58 50.36-78.38c30.15-18.88 69.91-29.29 112-29.29s81.81 10.41 112 29.29c32.48 20.35 50.37 48.19 50.37 78.38s-17.89 58-50.37 78.38C780.61 556.64 740.85 567 698.8 567zm0-183.34c-70.64 0-130.32 34.66-130.32 75.67S628.16 535 698.8 535s130.33-34.65 130.33-75.67S769.44 383.7 698.8 383.7z"
+                      />
+                      <path
+                        d="M698.8,658.71c-57.24,0-109-19.05-138.5-51-15.59-16.87-23.83-36.48-23.83-56.7a16,16,0,0,1,32,0c0,12.2,5.16,24,15.34,35,23.18,25.09,67.24,40.68,115,40.68s91.81-15.59,115-40.68c10.18-11,15.34-22.79,15.34-35a16,16,0,0,1,32,0c0,20.22-8.24,39.83-23.83,56.7C807.81,639.66,756,658.71,698.8,658.71Z"
+                      />
+                      <path
+                        d="M698.8,750.39c-42,0-81.81-10.41-112-29.3-32.48-20.34-50.37-48.18-50.37-78.38a16,16,0,0,1,32,0c0,41,59.69,75.68,130.33,75.68s130.33-34.66,130.33-75.68a16,16,0,0,1,32,0c0,30.2-17.89,58-50.37,78.38C780.61,740,740.85,750.39,698.8,750.39Z"
+                      />
+                      <path
+                        d="M845.13 658.72a16 16 0 01-16-16V459.37a16 16 0 0132 0V642.72A16 16 0 01845.13 658.72zM552.48 658.72a16 16 0 01-16-16V459.37a16 16 0 0132 0V642.72A16 16 0 01552.48 658.72z"
+                      />
+                    </svg>
+                    <span class="text-xl">Backend</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="hs-accordion-content w-full overflow-hidden transition-all duration-200"
+                role="group"
+                aria-labelledby="hs-basic-tree-heading-one"
+                [ngClass]="{
+                  'max-h-0': isActive(3),
+                  'max-h-screen': !isActive(3),
+                }"
+              >
+                <!-- Child Accordion 1 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-one"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_nodejs.webp"
+                          alt="logo nodejs"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Node.js
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Child Accordion 2 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-two"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_jee.svg"
+                          alt="logo jee"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Java
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Child Accordion 3 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-three"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          enable-background="new 0 0 128 128"
+                          viewBox="0 0 128 128"
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M64 2.3c-34.1 0-61.7 27.6-61.7 61.7s27.6 61.7 61.7 61.7 61.7-27.6 61.7-61.7-27.6-61.7-61.7-61.7zm33.3 35.7c-2.9.1-4.8-1.6-4.9-4.2 0-1 .2-1.8.9-2.8.6-1.2.8-1.4.8-1.9-.1-1.6-2.5-1.7-3.2-1.7-9.3.3-11.7 12.8-13.7 23l-1 5.4c5.3.8 9.1-.2 11.2-1.5 3-1.9-.8-3.9-.4-6.1.5-2.2 2.5-3.3 4.1-3.4 2.3-.1 3.9 2.3 3.8 4.7-.1 3.9-5.3 9.4-15.8 9.1-1.3 0-2.4-.1-3.5-.2l-2 10.9c-1.8 8.2-4.1 19.5-12.5 29.3-7.2 8.6-14.5 9.9-17.8 10-6.1.2-10.2-3.1-10.3-7.4-.1-4.2 3.6-6.5 6-6.6 3.3-.1 5.5 2.3 5.6 5 .1 2.3-1.1 3-1.9 3.5-.5.4-1.3.9-1.3 1.8 0 .4.5 1.3 1.8 1.3 2.6-.1 4.3-1.4 5.5-2.2 6-5 8.3-13.7 11.3-29.4l.6-3.8c1-5.1 2.2-10.9 3.9-16.6-4.2-3.2-6.7-7.1-12.4-8.6-3.9-1.1-6.2-.2-7.9 1.9-2 2.5-1.3 5.7.6 7.6l3.1 3.5c3.9 4.5 6 7.9 5.2 12.6-1.1 7.3-10 13-20.5 9.8-9-2.8-10.6-9.1-9.5-12.6.9-3.1 3.4-3.7 5.8-2.9 2.6.8 3.6 3.9 2.8 6.3-.1.3-.2.7-.5 1.2-.3.7-.8 1.2-1.1 2-.6 1.9 2 3.2 3.8 3.8 4 1.2 7.9-.9 8.9-4.1.9-3-1-5.1-1.7-5.9l-3.8-4.1c-1.7-1.9-5.6-7.3-3.7-13.4.7-2.3 2.2-4.8 4.4-6.4 4.6-3.5 9.7-4 14.5-2.6 6.2 1.8 9.2 5.9 13.1 9.1 2.2-6.3 5.2-12.6 9.7-17.8 4.1-4.8 9.5-8.2 15.8-8.5 6.3-.2 11 2.6 11.2 7.1-.1 2-1.2 5.7-5 5.8z"
+                          />
+                        </svg>
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Symfony
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Child Accordion 4 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-three"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                          src="../../assets/logo_laravel.webp"
+                          alt="logo laravel"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Laravel
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- End Parent Accordion -->
+          </div>
+        </div>
+      </div>
+
+      <div class="w-1/4 max-sm:w-full max-sm:pt-10">
+        <div
+          class="hs-accordion-treeview-root"
+          role="tree"
+          aria-orientation="vertical"
+        >
+          <div class="hs-accordion-group" role="group">
+            <!-- Parent Accordion -->
+            <div
+              class="hs-accordion"
+              [attr.aria-expanded]="isActive(4)"
+              id="hs-basic-tree-heading-one"
+            >
+              <div
+                class="hs-accordion-heading py-0.5 flex items-center gap-x-0.5 w-full"
+              >
+                <div
+                  class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md cursor-pointer pl-8 pb-1"
+                >
+                  <div
+                    class="flex items-center gap-x-3"
+                    (click)="toggleAccordion(4)"
+                    (keyup.enter)="toggleAccordion(4)"
+                  >
+                    <svg
+                      class="size-10"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 66 66"
+                      fill="currentColor"
+                    >
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.425"
+                        d="M52.6 42.1c-.6.5-1.1 1-1.8 1.5l4.1 4.6H5.5c-1.9 0-3.5-1.6-3.5-3.5V11.5C2 9.6 3.5 8 5.5 8h49.2c1.9 0 3.5 1.6 3.5 3.5V44L54 40.3c-.4.6-.9 1.2-1.4 1.8z"
+                      />
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.425"
+                        d="M6.6 12.6v30.9h31.8c-.6-.4-1.2-.9-1.8-1.5-4.4-4.4-4.4-11.6 0-16s11.6-4.4 16 0c.3.3.6.7.9 1V12.6H6.6zM23.6 48.2h12.9v5.3H23.6zM41.4 58h0c0-2.5-2-4.5-4.5-4.5H23.1c-2.5 0-4.5 2-4.5 4.5h22.8z"
+                      />
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.425"
+                        d="M11.9 31.9h3.4V36h-3.4zM18.2 29.2h3.4V36h-3.4zM24.4 26.6h3.4V36h-3.4zM26.3 21.6l-12.9 5.2M24.3 20.8l2 .8-.7 2M63.1 52.7c-1.2 1.2-3.2 1.1-4.3-.1l-8.1-9c.6-.4 1.2-.9 1.8-1.5.6-.5 1-1.2 1.5-1.8l9 8c1.3 1.2 1.3 3.2.1 4.4z"
+                      />
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.425"
+                        d="M52.6 26.1c4.4 4.4 4.4 11.6 0 16s-11.6 4.4-16 0-4.4-11.6 0-16 11.6-4.4 16 0z"
+                      />
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.425"
+                        d="M44.6 41.8c-2.1 0-4-.8-5.5-2.3-3-3-3-7.9 0-10.9 1.5-1.5 3.4-2.3 5.5-2.3s4 .8 5.5 2.3c1.5 1.5 2.3 3.4 2.3 5.5s-.8 4-2.3 5.5c-1.5 1.4-3.4 2.2-5.5 2.2z"
+                      />
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="10"
+                        stroke-width="1.425"
+                        d="M48.7 34.1c0 2.3-1.8 4.1-4.1 4.1s-4.1-1.8-4.1-4.1c0-.8.2-1.5.6-2.1.3.4.7.6 1.2.6.8 0 1.5-.7 1.5-1.5 0-.4-.1-.7-.3-.9.3-.1.7-.1 1.1-.1 2.2-.1 4.1 1.8 4.1 4z"
+                      />
+                    </svg>
+                    <span class="text-xl">Monitoring</span>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="hs-accordion-content w-full overflow-hidden transition-all duration-200"
+                role="group"
+                aria-labelledby="hs-basic-tree-heading-one"
+                [ngClass]="{
+                  'max-h-0': isActive(4),
+                  'max-h-screen': !isActive(4),
+                }"
+              >
+                <!-- Child Accordion 1 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-one"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <img
+                          class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200 rounded-2xl"
+                          src="../../assets/logo_zabbix.webp"
+                          alt="logo zabbix"
+                        />
+                        <span
+                          class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                        >
+                          Zabbix
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Child Accordion 2 -->
+                <div
+                  class="hs-accordion-group pl-9 pt-10 relative before:absolute before:top-0 before:start-3 before:w-0.5 before:-ms-px before:h-full before:bg-gray-400"
+                  role="group"
+                >
+                  <div
+                    class="hs-accordion flex items-center"
+                    id="hs-basic-tree-sub-heading-two"
+                  >
+                    <div
+                      class="border-t-2 border-gray-400 w-10 mr-3 max-2xl:w-5 max-2xl:mr-0"
+                    ></div>
+                    <div
+                      class="grow hs-accordion-selectable hs-accordion-selected:bg-gray-100 px-1.5 rounded-md"
+                    >
+                      <div class="group flex items-center gap-x-3">
+                        <div class="group flex items-center gap-x-3">
+                          <img
+                            class="img-responsive w-auto h-12 group-hover:h-16 ease-in-out duration-200"
+                            src="../../assets/logo_grafana.svg"
+                            alt="logo grafana"
+                          />
+                          <span
+                            class="mt-2 bg-gray-800 text-gray-200 p-2 rounded-full opacity-0 max-sm:opacity-100 group-hover:opacity-100 transition-opacity duration-200"
+                          >
+                            Grafana
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- End Parent Accordion -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div
+  class="mt-8 z-10 max-sm:mt-0 max-sm:translate-y-0 max-sm:w-screen relative text-black w-full max-w-xl mx-auto rounded-lg shadow-lg dark:text-white dark:shadow-gray-800 transform transition-opacity duration-500 opacity-0 translate-y-5"
+  [ngClass]="{ 'opacity-100 translate-y-0': isInviteVisible }"
+  #inviteDiv
+>
+  <!-- Mail Header -->
+  <div
+    class="bg-gradient-to-t from-gray-600 to-gray-500 text-gray-100 p-2 flex items-center justify-between rounded-t-lg dark:bg-gradient-to-t dark:from-gray-800 dark:to-gray-700 dark:text-gray-200"
+  >
+    <div class="flex items-center space-x-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        class="w-auto h-2 text-gray-100"
+        fill="currentColor"
+      >
+        <path fill="none" d="M0 0h24v24H0V0z" />
+        <path
+          d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.66-.29-1.39.2-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .71.73 1.2 1.39.91z"
+        />
+      </svg>
+
+      <span class="text-xs"> {{ "emailto" | transloco }} </span>
+    </div>
+    <div class="flex items-center space-x-2 justify-items-end">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        height="1rem"
+        width="auto"
+      >
+        <path fill="#f3f4f6" d="M6 13a1 1 0 1 1 0-2h12a1 1 0 1 1 0 2H6Z" />
+      </svg>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        height="1rem"
+        width="auto"
+      >
+        <path
+          fill="#f3f4f6"
+          d="M13.41,12l6.3-6.29a1,1,0,1,0-1.42-1.42L12,10.59,5.71,4.29A1,1,0,0,0,4.29,5.71L10.59,12l-6.3,6.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L12,13.41l6.29,6.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42Z"
+        />
+      </svg>
+    </div>
+  </div>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="send()"
+    class="p-4 space-y-4 text-sm backdrop-blur-md"
+  >
+    <div class="flex items-center">
+      <label for="email" class="block text-sm font-medium mr-3">{{
+        "from" | transloco
+      }}</label>
+      <input
+        formControlName="from_email"
+        type="email"
+        id="email"
+        [placeholder]="'entermail' | transloco"
+        class="mt-1 p-2 w-full block rounded-md bg-gray-50 dark:bg-gray-800 dark:text-gray-300 text-base text-gray-500 focus:ring-0 focus:outline-none focus:border-transparent"
+      />
+    </div>
+
+    <div>
+      <textarea
+        formControlName="message"
+        id="message"
+        [placeholder]="'entermsg' | transloco"
+        rows="10"
+        class="mt-1 p-2 block w-full rounded-md text-base text-gray-500 bg-gray-50 dark:bg-gray-800 dark:text-gray-300 focus:ring-0 focus:outline-none focus:border-transparent resize-none custom-scrollbar"
+      ></textarea>
+    </div>
+
+    <div class="text-right">
+      <button
+        type="submit"
+        class="bg-gray-600 py-1 px-3 rounded-full shadow hover:bg-gray-400 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
+      >
+        <img
+          class="img-responsive w-auto h-7"
+          src="../../assets/logo_send.svg"
+          alt="logo envoyer"
+        />
+      </button>
+    </div>
+  </form>
+</div>

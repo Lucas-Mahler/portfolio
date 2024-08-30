@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar styles for WebKit browsers (Chrome, Safari) */
+.custom-scrollbar {
+  overflow-y: scroll; /* Ensure the scrollbar is always visible */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: none; /* Background of the track */
+  border-radius: 10px; /* Rounded corners for the track */
+  cursor: default;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #4b5563; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #4b5563; /* Color of the thumb on hover */
+  cursor: pointer; /* Curseur de main au survol de l'overlay */
+}

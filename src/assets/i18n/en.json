@@ -1,0 +1,25 @@
+{
+  "welcome": "Welcome",
+  "menutextone": "Following the completion of my engineering degree, I am currently working in research and development at EDF.",
+  "menutexttwo": "To learn more about my background and skills, I invite you to navigate through the site.",
+  "devfullstack": "Fullstack Developer",
+  "navbar": {
+    "menu": "Menu",
+    "stack": "Stacks",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "from": "From:",
+  "emailto": "Email to: lucas.mahler.dev@gmail.com",
+  "entermail": "Enter your email...",
+  "entermsg": "Your message...",
+  "cmd": "Command Prompt",
+  "fileexplorer": "File Explorer",
+  "othertools": "Other Tools",
+  "Devsite": "Development of site sections",
+  "Foncsite": "Adding features to existing sections",
+  "intsaas": "Integration of Pinterest API for the entire SaaS",
+  "optand": "Optimization of Android emulator server",
+  "DevZabbix": "Fullstack Zabbix Development"
+}

@@ -1,0 +1,46 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Roboto&display=swap"
+  rel="stylesheet"
+/>
+
+<canvas
+  #canvas
+  class="fixed -z-1 pointer-events-none w-screen h-screen blur-xs"
+>
+</canvas>
+
+<div
+  class="min-h-screen font-montserrat bg-gradient-to-tl from-gray-50 via-gray-100 to-gray-200 dark:bg-gradient-to-tl dark:from-gray-800 dark:via-gray-900 dark:to-gray-950"
+>
+  <app-component-welcome *ngIf="showWelcomePage"></app-component-welcome>
+
+  <div
+    class="transition-opacity duration-500 ease-in-out"
+    [ngClass]="{
+      'opacity-0': showWelcomePage,
+      'opacity-100': !showWelcomePage,
+    }"
+  >
+    <div class="absolute bottom-4 left-4 bg-red-500">
+      <span class="sm:hidden">XS</span>
+      <span class="hidden sm:block md:hidden">SM</span>
+      <span class="hidden md:block lg:hidden">MD</span>
+      <span class="hidden lg:block xl:hidden">LG</span>
+      <span class="hidden xl:block 2xl:hidden">XL</span>
+      <span class="hidden 2xl:block 3xl:hidden">2XL</span>
+      <span class="hidden 3xl:block 4xl:hidden">3XL</span>
+    </div>
+
+    <app-component-options></app-component-options>
+    <div class="h-screen flex max-sm:flex-col max-sm:h-full p-8 max-sm:p-0">
+      <div class="w-1/4">
+        <app-component-navbar></app-component-navbar>
+      </div>
+      <div
+        class="w-3/4 h-full max-sm:h-fit p-6 ml-6 max-sm:p-0 max-sm:ml-0 max-sm:pt-10 rounded-lg"
+      >
+        <router-outlet />
+      </div>
+    </div>
+  </div>
+</div>
