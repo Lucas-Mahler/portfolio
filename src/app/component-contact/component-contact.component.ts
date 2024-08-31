@@ -6,7 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
   Validators,
-} from "@angular/forms"; // Ajouter Validators ici
+} from "@angular/forms";
 import emailjs from "@emailjs/browser";
 import { TranslocoModule } from "@ngneat/transloco";
 
@@ -19,8 +19,15 @@ import { TranslocoModule } from "@ngneat/transloco";
 })
 export class ComponentContactComponent implements OnInit {
   isInviteVisible = false;
-
   form: FormGroup;
+  showToast = false; // État du toaster
+
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      from_email: ["", [Validators.required, Validators.email]],
+      message: ["", Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -34,13 +41,6 @@ export class ComponentContactComponent implements OnInit {
 
   hideInvite(): void {
     this.isInviteVisible = false;
-  }
-
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
-      from_email: ["", [Validators.required, Validators.email]], // Ajout des validateurs
-      message: ["", Validators.required], // Champ requis pour le message
-    });
   }
 
   send() {
@@ -60,16 +60,23 @@ export class ComponentContactComponent implements OnInit {
         .then(
           (response) => {
             console.log("SUCCESS!", response.status, response.text);
-            // Ajouter du code pour le toaster ici si nécessaire
+
+            this.form.reset();
+
+            // Afficher le toaster
+            this.showToast = true;
+            setTimeout(() => {
+              this.showToast = false;
+            }, 3000); // Cacher le toaster après 3 secondes
           },
           (err) => {
             console.error("FAILED...", err);
-            // Ajouter du code pour le toaster ici si nécessaire
+            // Gestion des erreurs ici
           }
         );
     } else {
       console.error("Form is invalid");
-      // Ajouter du code pour afficher une alerte ici si nécessaire
+      // Gestion des erreurs ici
     }
   }
 }

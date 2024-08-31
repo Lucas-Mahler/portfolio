@@ -79,10 +79,10 @@ import { TranslocoModule } from "@ngneat/transloco";
   ],
 })
 export class ComponentStackComponent implements OnInit {
-  activeSection1 = true;
-  activeSection2 = true;
-  activeSection3 = true;
-  activeSection4 = true;
+  activeSection1 = false;
+  activeSection2 = false;
+  activeSection3 = false;
+  activeSection4 = false;
   isInviteVisible = false;
   isDivVisible = false;
 

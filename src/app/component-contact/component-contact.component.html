@@ -104,4 +104,11 @@
       </button>
     </div>
   </form>
+  <div
+    *ngIf="showToast"
+    class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-green-500 text-white p-3 rounded shadow-lg transition-opacity duration-500 ease-in-out"
+    [ngClass]="{ 'opacity-100': showToast, 'opacity-0': !showToast }"
+  >
+    Email envoyé avec succès !
+  </div>
 </div>
