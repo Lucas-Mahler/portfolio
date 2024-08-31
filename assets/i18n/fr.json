@@ -1,0 +1,30 @@
+{
+  "welcome": "Bienvenue",
+  "menutextone": "Suite à l'obtention de mon diplôme d'ingénieur, je travaille actuellement en recherche et développement chez EDF.",
+  "menutexttwo": "Pour en savoir plus sur mon parcours et mes compétences, je vous invite à naviguer sur le site.",
+  "devfullstack": "Développeur Fullstack",
+  "navbar": {
+    "menu": "Menu",
+    "stack": "Stacks",
+    "formation": "Formation",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "from": "De:",
+  "formation": "Formations accadémiques",
+  "emailto": "Envoyer à : lucas.mahler.dev@gmail.com",
+  "entermail": "Entrez votre e-mail...",
+  "entermsg": "Votre message...",
+  "cmd": "Invite de commandes",
+  "fileexplorer": "Explorateur de fichiers",
+  "othertools": "Autres outils",
+  "Devsite": "Développement de sections du site",
+  "Foncsite": "Ajouts de fonctionnalités dans les sections existantes",
+  "intsaas": "Intégration de l'API Pinterest pour l'ensemble du SaaS",
+  "optand": "Optimisation du serveur d'émulateur Android",
+  "DevZabbix": "Développement fullstack Zabbix",
+  "hectext": "Suite à ma formation d'ingénieur, je souhaitais suivre une formation dans ma deuxième passion, la finance, afin d'approfondir mes connaissances. Cette formation dirigée par Pascal Quiry, co-auteur du Vernimmen et professeur de finance, a été enrichissante à bien des égards.",
+  "esigelectext": "Ayant apprécié les enseignements de mon DUT, j'ai voulu poursuivre dans une formation englobant l'électrique, l'électronique et l'informatique. Pendant ma deuxième année, j'ai choisi la spécialité Ingénierie des Services du Numérique afin de me spécialiser dans le développement.",
+  "iuttext": "Durant mon IUT, j'ai appris les bases de l'électrique et de l'électronique. C'est là que j'ai découvert la programmation pour la première fois avec de l'assembleur, de l'Arduino et une application en C++.",
+  "bactext": "Baccalauréat obtenu avec mention Bien, m'ayant donné les bases scientifiques nécessaires pour la suite."
+}
