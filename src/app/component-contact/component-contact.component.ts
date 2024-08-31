@@ -20,7 +20,7 @@ import { TranslocoModule } from "@ngneat/transloco";
 export class ComponentContactComponent implements OnInit {
   isInviteVisible = false;
   form: FormGroup;
-  showToast = false; // État du toaster
+  showToast = false;
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -63,20 +63,17 @@ export class ComponentContactComponent implements OnInit {
 
             this.form.reset();
 
-            // Afficher le toaster
             this.showToast = true;
             setTimeout(() => {
               this.showToast = false;
-            }, 3000); // Cacher le toaster après 3 secondes
+            }, 3000);
           },
           (err) => {
             console.error("FAILED...", err);
-            // Gestion des erreurs ici
           }
         );
     } else {
       console.error("Form is invalid");
-      // Gestion des erreurs ici
     }
   }
 }
