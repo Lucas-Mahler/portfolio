@@ -51,7 +51,8 @@
     (ngSubmit)="send()"
     class="p-4 space-y-4 text-sm backdrop-blur-md"
   >
-    <div class="flex items-center">
+    <div class="relative flex items-center">
+      <!-- Conteneur parent avec position relative -->
       <label for="email" class="block text-sm font-medium mr-3">{{
         "from" | transloco
       }}</label>
@@ -62,6 +63,15 @@
         [placeholder]="'entermail' | transloco"
         class="mt-1 p-2 w-full block rounded-md bg-gray-50 dark:bg-gray-800 dark:text-gray-300 text-base text-gray-500 focus:ring-0 focus:outline-none focus:border-transparent"
       />
+
+      <div
+        *ngIf="
+          form.get('from_email')?.invalid && form.get('from_email')?.touched
+        "
+        class="absolute right-0 w-fit h-fit p-3 bg-red-500 text-white text-xs shadow-inner top-1 rounded-r-md"
+      >
+        Email invalide
+      </div>
     </div>
 
     <div>
@@ -72,16 +82,23 @@
         rows="10"
         class="mt-1 p-2 block w-full rounded-md text-base text-gray-500 bg-gray-50 dark:bg-gray-800 dark:text-gray-300 focus:ring-0 focus:outline-none focus:border-transparent resize-none custom-scrollbar"
       ></textarea>
+      <div
+        *ngIf="form.get('message')?.invalid && form.get('message')?.touched"
+        class="absolute right-4 w-fit p-3 bg-red-500 text-white text-xs shadow-inner bottom-[70px] rounded-br-md"
+      >
+        Le message ne peut pas être vide.
+      </div>
     </div>
 
     <div class="text-right">
       <button
         type="submit"
-        class="bg-gray-600 py-1 px-3 rounded-full shadow hover:bg-gray-400 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400"
+        [disabled]="form.invalid"
+        class="bg-gray-600 py-1 px-3 rounded-full shadow hover:bg-gray-400 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
       >
         <img
           class="img-responsive w-auto h-7"
-          src="../../assets/logo_send.svg"
+          src="assets/logo_send.svg"
           alt="logo envoyer"
         />
       </button>

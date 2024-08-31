@@ -5,7 +5,8 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
-} from "@angular/forms";
+  Validators,
+} from "@angular/forms"; // Ajouter Validators ici
 import emailjs from "@emailjs/browser";
 import { TranslocoModule } from "@ngneat/transloco";
 
@@ -37,31 +38,38 @@ export class ComponentContactComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      from_email: "",
-      message: "",
+      from_email: ["", [Validators.required, Validators.email]], // Ajout des validateurs
+      message: ["", Validators.required], // Champ requis pour le message
     });
   }
 
   send() {
-    const formValues = this.form.value;
+    if (this.form.valid) {
+      const formValues = this.form.value;
 
-    emailjs
-      .send(
-        "service_v9ltgfq",
-        "template_a19bqrr",
-        {
-          from_email: formValues.from_email,
-          message: formValues.message,
-        },
-        "pd8JKsp-Vh77EpMra"
-      )
-      .then(
-        (response) => {
-          console.log("SUCCESS!", response.status, response.text);
-        },
-        (err) => {
-          console.error("FAILED...", err);
-        }
-      );
+      emailjs
+        .send(
+          "service_v9ltgfq",
+          "template_a19bqrr",
+          {
+            from_email: formValues.from_email,
+            message: formValues.message,
+          },
+          "pd8JKsp-Vh77EpMra"
+        )
+        .then(
+          (response) => {
+            console.log("SUCCESS!", response.status, response.text);
+            // Ajouter du code pour le toaster ici si nécessaire
+          },
+          (err) => {
+            console.error("FAILED...", err);
+            // Ajouter du code pour le toaster ici si nécessaire
+          }
+        );
+    } else {
+      console.error("Form is invalid");
+      // Ajouter du code pour afficher une alerte ici si nécessaire
+    }
   }
 }
