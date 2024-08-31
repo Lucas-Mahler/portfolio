@@ -52,10 +52,6 @@
                 "glob": "**/*",
                 "input": "src/assets/i18n",
                 "output": "/assets/i18n"
-              },
-              {
-                "glob": "**/*",
-                "input": "public"
               }
             ],
             "styles": ["src/styles.css"],
