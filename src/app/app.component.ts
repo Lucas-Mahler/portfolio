@@ -174,25 +174,37 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private animationLoop(): void {
-    this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+  private lastTimestamp = 0;
+  private fpsInterval = 1000 / 60;
 
-    // Filtrer et mettre à jour les particules
-    this.particles = this.particles.filter((particle) => {
-      particle.update();
-      particle.draw(this.ctx);
-      if (particle.isDead()) {
-        // Supprime la particule morte et en génère une nouvelle
-        const x = Math.random() * this.canvasWidth;
-        const y = Math.random() * this.canvasHeight;
-        this.particles.push(new Particle(x, y));
-        return false;
-      }
-      return true;
-    });
+  private animationLoop(timestamp?: number): void {
+    if (!timestamp) timestamp = 0; // Initialisation de timestamp
+
+    // Calculer le temps écoulé depuis la dernière frame
+    const elapsed = timestamp - this.lastTimestamp;
+
+    if (elapsed > this.fpsInterval) {
+      this.lastTimestamp = timestamp - (elapsed % this.fpsInterval);
+
+      this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+
+      // Filtrer et mettre à jour les particules
+      this.particles = this.particles.filter((particle) => {
+        particle.update();
+        particle.draw(this.ctx);
+        if (particle.isDead()) {
+          // Supprime la particule morte et en génère une nouvelle
+          const x = Math.random() * this.canvasWidth;
+          const y = Math.random() * this.canvasHeight;
+          this.particles.push(new Particle(x, y));
+          return false;
+        }
+        return true;
+      });
+    }
 
     if (document.visibilityState === "visible") {
-      requestAnimationFrame(() => this.animationLoop());
+      requestAnimationFrame((ts) => this.animationLoop(ts));
     }
   }
 
