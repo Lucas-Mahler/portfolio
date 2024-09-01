@@ -46,7 +46,6 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets",
               {
                 "glob": "**/*",
@@ -89,17 +88,17 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-  "builder": "@angular-devkit/build-angular:dev-server",
-  "configurations": {
-    "production": {
-      "buildTarget": "ng-dev-portfolio:build:production"
-    },
-    "development": {
-      "buildTarget": "ng-dev-portfolio:build:development"
-    }
-  },
-  "defaultConfiguration": "development"
-},
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ng-dev-portfolio:build:production"
+            },
+            "development": {
+              "buildTarget": "ng-dev-portfolio:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
 
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n"
