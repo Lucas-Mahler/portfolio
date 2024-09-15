@@ -16,19 +16,18 @@ class TrailParticle {
   constructor(x: number, y: number) {
     this.x = x;
     this.y = y;
-    this.size = Math.random() * 5 + 1; // Taille
+    this.size = Math.random() * 5 + 1;
     this.time = 0;
-    this.ttl = Math.floor(Math.random() * 30) + 30; // Temps de vie
-    this.alpha = 1; // Opacité init
+    this.ttl = Math.floor(Math.random() * 30) + 30;
+    this.alpha = 1;
   }
 
   update(alphamain: number) {
     this.time++;
-    this.alpha = alphamain - (alphamain * this.time) / this.ttl; // Diminue l'opacité avec le temps
+    this.alpha = alphamain - (alphamain * this.time) / this.ttl;
   }
 
   draw(ctx: CanvasRenderingContext2D) {
-    //ctx.filter = "blur(1px)"; trop de stress gpu
     ctx.fillStyle = `rgba(156,163,175, ${this.alpha})`;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -61,30 +60,27 @@ class Particle {
     this.randomIndexY = Math.floor(Math.random() * this.values.length);
     this.x = x;
     this.y = y;
-    this.size = Math.random() * 5 + 1; // Taille
+    this.size = Math.random() * 5 + 1;
     this.time = 0;
-    this.ttl = Math.floor(Math.random() * 20) + 50; // Temps de vie
-    this.speedX = this.values[this.randomIndexX]; // Vitesse aléatoire en X
-    this.speedY = this.values[this.randomIndexY]; // Vitesse aléatoire en Y
-    this.alpha = 1; // Opacité init
+    this.ttl = Math.floor(Math.random() * 20) + 50;
+    this.speedX = this.values[this.randomIndexX];
+    this.speedY = this.values[this.randomIndexY];
+    this.alpha = 1;
   }
 
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
-
-    // Ajouter une nouvelle TrailParticle à la position actuelle
     this.trails.push(new TrailParticle(this.x, this.y));
 
     if (Math.random() > 0.97) {
       this.turn++;
       this.randomIndexX = Math.floor(Math.random() * this.values.length);
       this.randomIndexY = Math.floor(Math.random() * this.values.length);
-      this.speedX = this.values[this.randomIndexX]; // Vitesse aléatoire en X
-      this.speedY = this.values[this.randomIndexY]; // Vitesse aléatoire en Y
+      this.speedX = this.values[this.randomIndexX];
+      this.speedY = this.values[this.randomIndexY];
     }
 
-    // Réinitialiser la particule si elle sort du canvas
     if (
       this.x < 0 ||
       this.x > window.innerWidth ||
@@ -93,11 +89,11 @@ class Particle {
     ) {
       this.x = Math.random() * window.innerWidth;
       this.y = Math.random() * window.innerHeight;
-      this.time = 0; // Réinitialiser le temps
+      this.time = 0;
     }
 
     this.time++;
-    this.alpha = 1 - (1 * this.time) / this.ttl; // Diminue l'opacité avec le temps
+    this.alpha = 1 - (1 * this.time) / this.ttl;
 
     this.trails = this.trails.filter((trail) => {
       trail.update(this.alpha);
@@ -106,10 +102,7 @@ class Particle {
   }
 
   draw(ctx: CanvasRenderingContext2D) {
-    // Dessiner les TrailParticles
     this.trails.forEach((trail) => trail.draw(ctx));
-
-    // Dessiner la particule principale
     ctx.fillStyle = `rgba(156,163,175, ${this.alpha})`;
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -131,7 +124,6 @@ class Particle {
     ComponentOptionsComponent,
     RouterOutlet,
   ],
-
   templateUrl: "app.component.html",
   providers: [],
 })
@@ -147,14 +139,14 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.showWelcomePage = false;
-    }, 2500); // Mettre 2500 apres
+    }, 2500);
     const canvas = this.canvasRef.nativeElement;
     this.ctx = canvas.getContext("2d")!;
     this.updateCanvasDimensions();
 
-    window.addEventListener("resize", () => this.updateCanvasDimensions()); // Mettre à jour la taille du canvas lors du redimensionnement de la fenêtre
+    window.addEventListener("resize", () => this.updateCanvasDimensions());
 
-    this.generateParticles(10); // Générer particules au démarrage
+    this.generateParticles();
     this.animationLoop();
   }
 
@@ -166,8 +158,11 @@ export class AppComponent implements OnInit {
     canvas.height = this.canvasHeight;
   }
 
-  private generateParticles(count: number): void {
-    for (let i = 0; i < count; i++) {
+  private generateParticles(): void {
+    const isMobile = window.innerWidth <= 640;
+    const particleCount = isMobile ? 1 : 5;
+
+    for (let i = 0; i < particleCount; i++) {
       const x = Math.random() * this.canvasWidth;
       const y = Math.random() * this.canvasHeight;
       this.particles.push(new Particle(x, y));
@@ -178,9 +173,8 @@ export class AppComponent implements OnInit {
   private fpsInterval = 1000 / 60;
 
   private animationLoop(timestamp?: number): void {
-    if (!timestamp) timestamp = 0; // Initialisation de timestamp
+    if (!timestamp) timestamp = 0;
 
-    // Calculer le temps écoulé depuis la dernière frame
     const elapsed = timestamp - this.lastTimestamp;
 
     if (elapsed > this.fpsInterval) {
@@ -188,12 +182,10 @@ export class AppComponent implements OnInit {
 
       this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
 
-      // Filtrer et mettre à jour les particules
       this.particles = this.particles.filter((particle) => {
         particle.update();
         particle.draw(this.ctx);
         if (particle.isDead()) {
-          // Supprime la particule morte et en génère une nouvelle
           const x = Math.random() * this.canvasWidth;
           const y = Math.random() * this.canvasHeight;
           this.particles.push(new Particle(x, y));
