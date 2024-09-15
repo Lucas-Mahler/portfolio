@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, OnInit } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
 import {
   FormBuilder,
   FormGroup,
@@ -21,6 +27,13 @@ export class ComponentContactComponent implements OnInit {
   isInviteVisible = false;
   form: FormGroup;
   showToast = false;
+
+  // Variables pour gérer le drag
+  isDragging = false;
+  position = { x: 0, y: 0 }; // Position initiale
+  offset = { x: 0, y: 0 }; // Décalage lors du drag
+
+  @ViewChild("inviteDiv") inviteDiv!: ElementRef; // Référence au div
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -75,5 +88,35 @@ export class ComponentContactComponent implements OnInit {
     } else {
       console.error("Form is invalid");
     }
+  }
+
+  // Fonction pour initier le drag
+  startDragging(event: MouseEvent): void {
+    this.isDragging = true;
+    this.offset = {
+      x: event.clientX - this.position.x,
+      y: event.clientY - this.position.y,
+    };
+  }
+
+  // Fonction pour déplacer le composant pendant le drag
+  onDrag(event: MouseEvent): void {
+    if (this.isDragging) {
+      this.position = {
+        x: event.clientX - this.offset.x,
+        y: event.clientY - this.offset.y,
+      };
+    }
+  }
+
+  // Fonction pour stopper le drag
+  stopDragging(): void {
+    this.isDragging = false;
+  }
+
+  // Optionnel : Si l'utilisateur sort du composant pendant qu'il le déplace, le drag se termine
+  @HostListener("document:mouseup", ["$event"])
+  onMouseUp(): void {
+    this.isDragging = false;
   }
 }
