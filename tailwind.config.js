@@ -9,6 +9,7 @@ module.exports = {
         xs: "3px",
       },
       fontFamily: {
+        robotoMono: ['"Roboto Mono"', "monospace"],
         montserrat: ["Montserrat"],
         lato: ["Lato"],
         garamond: ["Garamond"],

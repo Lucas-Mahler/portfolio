@@ -46,9 +46,12 @@
           <li
             class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
           >
-            <a (click)="selectSection('project')" routerLink="project">{{
-              "navbar.projects" | transloco
-            }}</a>
+            <a
+              (click)="selectSection('project')"
+              routerLink="project"
+              #scrambleText
+              >Projets</a
+            >
           </li>
         </div>
         <div
@@ -80,9 +83,9 @@
           <li
             class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
           >
-            <a (click)="selectSection('stack')" routerLink="stack">{{
-              "navbar.stack" | transloco
-            }}</a>
+            <a (click)="selectSection('stack')" routerLink="stack" #scrambleText
+              >Stacks</a
+            >
           </li>
         </div>
         <div
@@ -114,9 +117,12 @@
           <li
             class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
           >
-            <a (click)="selectSection('formation')" routerLink="formation">{{
-              "navbar.formation" | transloco
-            }}</a>
+            <a
+              (click)="selectSection('formation')"
+              routerLink="formation"
+              #scrambleText
+              >Formation</a
+            >
           </li>
         </div>
         <div
@@ -148,9 +154,13 @@
           <li
             class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
           >
-            <a (click)="selectSection('contact')" routerLink="contact">{{
-              "navbar.contact" | transloco
-            }}</a>
+            <a
+              (click)="selectSection('contact')"
+              routerLink="contact"
+              #scrambleText
+            >
+              Contact
+            </a>
           </li>
         </div>
       </ul>
