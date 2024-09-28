@@ -1,6 +1,6 @@
 <div class="flex-col">
   <div class="flex-col">
-    <div class="w-fit max-sm:p-6 max-sm:pt-2">
+    <div class="w-fit max-sm:p-0 max-sm:pt-2">
       <a (click)="selectSection('Menu')" routerLink=""
         ><H1 class="text-4xl text-gray-950 dark:text-gray-200 whitespace-nowrap"
           >Lucas Mahler</H1
@@ -14,7 +14,7 @@
       </a>
     </div>
     <nav
-      class="p-4 max-sm:p-0 w-1/8 max-sm:w-fit h-full flex flex-col text-gray-600 dark:text-gray-400 pt-16 max-sm:pt-2"
+      class="p-4 max-sm:p-0 w-1/8 max-sm:w-fit h-full flex flex-col text-gray-700 dark:text-gray-300 pt-16 max-sm:pt-4"
     >
       <ul class="flex flex-col text-2xl font-semibold">
         <div
@@ -22,7 +22,7 @@
             'ml-5': selectedSection === 'project',
             'hover:px-7': selectedSection !== 'project',
           }"
-          class="group flex items-center transition-all duration-200 p-2"
+          class="group flex items-center transition-all duration-200 p-2 w-fit"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +33,7 @@
             [ngClass]="
               selectedSection === 'project'
                 ? 'text-red-400 dark:text-red-500 opacity-100 stroke-3 size-4 group-hover:size-6'
-                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-500 transition-opacity duration-200'
+                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-400 transition-opacity duration-200'
             "
             class="size-6 ease-in opacity-0 will-change-transform will-change-opacity"
           >
@@ -44,7 +44,7 @@
             />
           </svg>
           <li
-            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
+            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-100 group-hover:font-medium"
           >
             <a
               (click)="selectSection('project')"
@@ -59,7 +59,7 @@
             'ml-5': selectedSection === 'stack',
             'hover:px-7': selectedSection !== 'stack',
           }"
-          class="group flex items-center transition-all duration-200 p-2"
+          class="group flex items-center transition-all duration-200 p-2 w-fit"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +70,7 @@
             [ngClass]="
               selectedSection === 'stack'
                 ? 'text-red-400 dark:text-red-500 opacity-100 stroke-3 size-4 group-hover:size-6'
-                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-500 transition-opacity duration-200'
+                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-400 transition-opacity duration-200'
             "
             class="size-6 ease-in opacity-0 will-change-transform will-change-opacity"
           >
@@ -81,7 +81,7 @@
             />
           </svg>
           <li
-            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
+            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-100 group-hover:font-medium"
           >
             <a (click)="selectSection('stack')" routerLink="stack" #scrambleText
               >Stacks</a
@@ -93,7 +93,7 @@
             'ml-5': selectedSection === 'formation',
             'hover:px-7': selectedSection !== 'formation',
           }"
-          class="group flex items-center transition-all duration-200 p-2"
+          class="group flex items-center transition-all duration-200 p-2 w-fit"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +104,7 @@
             [ngClass]="
               selectedSection === 'formation'
                 ? 'text-red-400 dark:text-red-500 opacity-100 stroke-3 size-4 group-hover:size-6'
-                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-500 transition-opacity duration-200'
+                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-400 transition-opacity duration-200'
             "
             class="size-6 ease-in opacity-0 will-change-transform will-change-opacity"
           >
@@ -115,7 +115,7 @@
             />
           </svg>
           <li
-            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
+            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-100 group-hover:font-medium"
           >
             <a
               (click)="selectSection('formation')"
@@ -130,7 +130,7 @@
             'ml-5': selectedSection === 'contact',
             'hover:px-7': selectedSection !== 'contact',
           }"
-          class="group flex items-center transition-all duration-200 p-2"
+          class="group flex items-center transition-all duration-200 p-2 w-fit"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +141,7 @@
             [ngClass]="
               selectedSection === 'contact'
                 ? 'text-red-400 dark:text-red-500 opacity-100 stroke-3 size-4 group-hover:size-6'
-                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-500 transition-opacity duration-200'
+                : 'group-hover:opacity-40 group-active:opacity-100 text-gray-400 transition-opacity duration-200'
             "
             class="size-6 ease-in opacity-0 will-change-transform will-change-opacity"
           >
@@ -152,7 +152,7 @@
             />
           </svg>
           <li
-            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-500 group-hover:font-medium"
+            class="ease-in-out transition-all flex max-w-fit duration-200 group-hover:text-3xl group-hover:text-gray-100 group-hover:font-medium"
           >
             <a
               (click)="selectSection('contact')"

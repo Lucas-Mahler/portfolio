@@ -1,11 +1,5 @@
 import { CommonModule } from "@angular/common"; // Importation du module commun Angular
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  QueryList,
-  ViewChildren,
-} from "@angular/core"; // Importation des fonctionnalités de base d'Angular
+import { Component, ElementRef, QueryList, ViewChildren } from "@angular/core"; // Importation des fonctionnalités de base d'Angular
 import {
   ActivatedRoute,
   Router,
@@ -14,95 +8,84 @@ import {
 } from "@angular/router"; // Importation des modules de routage d'Angular
 import { TranslocoModule } from "@ngneat/transloco"; // Importation de la bibliothèque pour la traduction
 
-// Classe qui gère l'effet de scrambling du texte
-class TextScramble {
-  el: HTMLElement; // Élément HTML où le texte sera affiché
-  chars: string; // Caractères utilisés pour le scrambling
-  frameRequest: number | undefined; // Identifiant de la requête d'animation
-  queue: {
-    from: string; // Texte d'origine
-    to: string; // Nouveau texte
-    start: number; // Cadre de début de l'animation
-    end: number; // Cadre de fin de l'animation
-    reverse: boolean; // Indique si l'animation doit être inversée
-    char?: string; // Caractère aléatoire affiché
-  }[] = []; // File d'attente pour gérer les animations de texte
-  frame = 0; // Compteur de cadre
-  resolve!: () => void; // Fonction de résolution de la promesse
+// class TextScramble {
+//   el: HTMLElement;
+//   chars: string;
+//   frameRequest: ReturnType<typeof setTimeout> | undefined; // Type corrigé pour accepter Timeout
+//   speed = 500; // Vitesse de l'effet en ms
+//   maxScrambleSteps = 4; // Chaque lettre subit 3 changements avant de se stabiliser
+//   isAnimating = false; // Verrou pour éviter les animations en conflit
 
-  constructor(el: HTMLElement) {
-    this.el = el; // Initialisation de l'élément HTML
-    this.chars = "!<>-_\\/[]{}—=+^?#__"; // Définition des caractères pour le scrambling
-    this.update = this.update.bind(this); // Liaison de la méthode update au contexte de la classe
-  }
+//   constructor(el: HTMLElement) {
+//     this.el = el;
+//     this.chars = "!<>-_\\/[]{}—=+^?#__"; // Liste de caractères pour le scramble
+//   }
 
-  // Méthode pour définir le texte à afficher
-  setText(newText: string, reverse = false) {
-    const oldText = this.el.innerText; // Texte actuel de l'élément
-    const length = Math.max(oldText.length, newText.length); // Longueur maximale entre l'ancien et le nouveau texte
-    const promise = new Promise<void>((resolve) => (this.resolve = resolve)); // Création d'une promesse pour gérer l'animation
-    this.queue = []; // Réinitialisation de la file d'attente
+//   setText(newText: string, reverse = false) {
+//     if (this.isAnimating) return;
 
-    // Remplissage de la file d'attente avec les détails de chaque caractère
-    for (let i = 0; i < length; i++) {
-      const from = oldText[i] || ""; // Caractère d'origine
-      const to = newText[i] || ""; // Nouveau caractère
-      const start = Math.floor(Math.random() * 10); // Réduction du temps de départ
-      const end = start + Math.floor(Math.random() * 10) + 5; // Réduction du temps de fin avec un minimum
+//     this.isAnimating = true;
 
-      this.queue.push({ from, to, start, end, reverse }); // Ajout à la queue
-    }
+//     const oldText = this.el.innerText;
 
-    // Annuler l'animation précédente si elle est en cours
-    if (this.frameRequest !== undefined) {
-      cancelAnimationFrame(this.frameRequest);
-    }
+//     // Si une animation précédente est en cours, on l'annule
+//     if (this.frameRequest !== undefined) {
+//       clearTimeout(this.frameRequest); // Utilisation de clearTimeout pour annuler l'animation en cours
+//     }
 
-    this.frame = 0; // Réinitialisation du compteur de cadre
-    this.update(); // Démarrage de l'animation
-    return promise; // Retourne la promesse
-  }
+//     // Lancement de l'animation de scramble
+//     this.runScramble(oldText, newText, reverse, 0, 0).then(() => {
+//       this.isAnimating = false; // Déverrouiller une fois l'animation terminée
+//     });
+//   }
 
-  // Méthode pour mettre à jour le texte affiché
-  update() {
-    let output = ""; // Stocke le texte à afficher
-    let complete = 0; // Compteur pour vérifier si tous les caractères sont complets
+//   private runScramble(
+//     oldText: string,
+//     newText: string,
+//     reverse: boolean,
+//     step: number,
+//     index: number
+//   ): Promise<void> {
+//     return new Promise((resolve) => {
+//       let output = "";
 
-    // Boucle à travers la file d'attente
-    for (let i = 0, n = this.queue.length; i < n; i++) {
-      const { from, to, start, end, reverse, char } = this.queue[i];
+//       const actualIndex = reverse ? oldText.length - 1 - index : index;
 
-      // Vérification si l'animation est terminée pour ce caractère
-      if (this.frame >= end) {
-        complete++;
-        output += to; // Ajout du caractère final
-      } else if (this.frame >= start) {
-        // Si nous sommes dans la plage d'animation
-        if (!char || Math.random() < 0.28) {
-          this.queue[i].char = this.randomChar(); // Génération d'un caractère aléatoire
-        }
-        output += `<span class="dud">${this.queue[i].char}</span>`; // Affichage du caractère aléatoire
-      } else {
-        output += reverse ? to : from; // Affichage du texte d'origine ou du nouveau texte
-      }
-    }
+//       for (let i = 0; i < oldText.length; i++) {
+//         if ((reverse && i > actualIndex) || (!reverse && i < actualIndex)) {
+//           output += newText[i] || oldText[i];
+//         } else if (i === actualIndex && step < this.maxScrambleSteps) {
+//           output += this.randomChar();
+//         } else {
+//           output += oldText[i];
+//         }
+//       }
 
-    this.el.innerHTML = output; // Mise à jour de l'élément HTML
+//       this.el.innerHTML = output;
 
-    // Vérification si tous les caractères sont complets
-    if (complete === this.queue.length) {
-      this.resolve(); // Résolution de la promesse
-    } else {
-      this.frameRequest = requestAnimationFrame(this.update); // Demande le prochain cadre d'animation
-      this.frame++; // Incrémentation du compteur de cadre
-    }
-  }
+//       if (step < this.maxScrambleSteps) {
+//         this.frameRequest = setTimeout(() => {
+//           this.runScramble(oldText, newText, reverse, step + 1, index).then(
+//             resolve
+//           );
+//         }, this.speed);
+//       } else if (index < oldText.length) {
+//         this.frameRequest = setTimeout(() => {
+//           this.runScramble(oldText, newText, reverse, 0, index + 1).then(
+//             resolve
+//           );
+//         }, this.speed);
+//       } else {
+//         this.el.innerHTML = newText;
+//         resolve();
+//       }
+//     });
+//   }
 
-  // Méthode pour générer un caractère aléatoire
-  randomChar() {
-    return this.chars[Math.floor(Math.random() * this.chars.length)]; // Retourne un caractère aléatoire
-  }
-}
+//   randomChar() {
+//     return this.chars[Math.floor(Math.random() * this.chars.length)];
+//   }
+// }
 
 // Définition du composant Angular
 @Component({
@@ -112,8 +95,8 @@ class TextScramble {
   templateUrl: "./component-navbar.component.html", // Chemin vers le fichier de template
   styles: ``, // Styles associés (peut être rempli)
 })
-export class ComponentNavbarComponent implements AfterViewInit {
-  @ViewChildren("scrambleText") scrambleTexts!: QueryList<ElementRef>; // Utilisation de ViewChildren
+export class ComponentNavbarComponent {
+  @ViewChildren("scrambleText") scrambleTexts!: QueryList<ElementRef>;
 
   selectedSection = ""; // Variable pour stocker la section sélectionnée
 
@@ -128,26 +111,26 @@ export class ComponentNavbarComponent implements AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    const originalTexts: string[] = []; // Tableau pour stocker les textes originaux
-    const textScramblers: TextScramble[] = []; // Tableau pour les instances de TextScramble
+  // ngAfterViewInit() {
+  //   const textScramblers: TextScramble[] = [];
 
-    this.scrambleTexts.forEach((el) => {
-      const fx = new TextScramble(el.nativeElement); // Créer une instance pour chaque élément
-      const originalText = el.nativeElement.innerText; // Récupérer le texte original
-      originalTexts.push(originalText); // Stocker le texte original
-      textScramblers.push(fx); // Ajouter à la liste des scramblers
+  //   this.scrambleTexts.forEach((el) => {
+  //     const fx = new TextScramble(el.nativeElement);
+  //     const originalText = el.nativeElement.innerText;
 
-      el.nativeElement.addEventListener("mouseenter", () => {
-        fx.setText(originalText.split("").reverse().join(""));
-      });
+  //     textScramblers.push(fx);
 
-      el.nativeElement.addEventListener("mouseout", () => {
-        fx.setText(originalText, true);
-      });
-    });
-  }
+  //     // Effet onMouseEnter : brouillage progressif
+  //     el.nativeElement.addEventListener("mouseenter", () => {
+  //       fx.setText(originalText);
+  //     });
 
+  //     // Effet onMouseOut : restauration progressive inverse
+  //     el.nativeElement.addEventListener("mouseout", () => {
+  //       fx.setText(originalText, true); // Inverser l'effet
+  //     });
+  //   });
+  // }
   // Méthode pour sélectionner une section
   selectSection(section: string) {
     this.selectedSection = section; // Mise à jour de la section sélectionnée
